@@ -11,11 +11,11 @@ django-heroku==0.3.1
 djangorestframework==3.12.4
 djangorestframework-simplejwt==4.6.0
 flatbuffers==1.12
-gast==0.3.3
+gast
 google-auth==1.28.1
 google-auth-oauthlib==0.4.4
 google-pasta==0.2.0
-grpcio==1.32.0
+grpcio
 gunicorn==20.1.0
 h5py
 idna==2.10
