@@ -3,10 +3,10 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from tensorflow.keras.models import load_model
+#from tensorflow.keras.models import load_model
 from django.conf import settings
 import os
-#import pickle
+import pickle
 class PredictDisease(APIView):
 	permission_classes = (AllowAny,)
 	def post(self, request, format=None):
@@ -14,8 +14,10 @@ class PredictDisease(APIView):
 		modelPath = "rf.pkl"
 		symptoms = [request.data.get("symptoms")]
 		preditionDate = request.data.get("preditionDate")
-		model = load_model(os.path.join(settings.MODEL_ROOT, modelPath))
-		prediction = model.predict(symptoms)
+		model = pickle.load(open(os.path.join(settings.MODEL_ROOT, modelPath), 'rb'))
+		print(type(symptoms))
+		print(type(model))
+		prediction = model.predict_proba(symptoms)
 		print(prediction)
 		predictedDisease = {}
 		for i in range(len(diseases)):
