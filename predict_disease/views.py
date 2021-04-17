@@ -46,8 +46,8 @@ class PredictDisease(APIView):
 		for i in previousPredictions:
 			predict = i.prediction.split('|')
 			predictedDisease = {}
-			for i in range(len(self.diseases)):
-				predictedDisease[self.diseases[i]] = prediction[i]
+			for j in range(len(self.diseases)):
+				predictedDisease[self.diseases[j]] = predict[j]
 			returnPrediction.append({
 				"date" : i.date,
 				"predictedDisease" : predictedDisease
